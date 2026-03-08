@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Constants.CANConstants;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -16,14 +18,12 @@ public class Drive extends SubsystemBase {
   private final WPI_TalonSRX backRightMotor;
   private final DifferentialDrive differentialDriveController;
 
-  /** Creates a new Drive. */
   public Drive() {
     // Create motors with appropriate CAN IDs
-    // TODO: Move to constants file
-    frontLeftMotor = new WPI_TalonSRX(0);
-    backLeftMotor = new WPI_TalonSRX(1);
-    frontRightMotor = new WPI_TalonSRX(2);
-    backRightMotor = new WPI_TalonSRX(3);
+    frontLeftMotor = new WPI_TalonSRX(CANConstants.FRONT_LEFT_MOTOR_ID);
+    backLeftMotor = new WPI_TalonSRX(CANConstants.BACK_LEFT_MOTOR_ID);
+    frontRightMotor = new WPI_TalonSRX(CANConstants.FRONT_RIGHT_MOTOR_ID);
+    backRightMotor = new WPI_TalonSRX(CANConstants.BACK_RIGHT_MOTOR_ID);
     
     // Configure motor reversals
     frontLeftMotor.setInverted(false);
