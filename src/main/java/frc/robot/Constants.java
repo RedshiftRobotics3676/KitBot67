@@ -1,6 +1,6 @@
 package frc.robot;
 
-import com.ctre.phoenix6.controls.DutyCycleOut;
+import com.ctre.phoenix6.controls.MotionMagicVelocityDutyCycle;
 
 public class Constants {
     public class CANConstants {
@@ -13,9 +13,13 @@ public class Constants {
     }
     
     public class ShooterConstants {
-        public final static DutyCycleOut ACTIVE_SHOOT_DUTY_CYCLE = new DutyCycleOut(0.5); 
-        public final static DutyCycleOut INDEXER_INTAKE_DUTY_CYCLE = new DutyCycleOut(0.5); 
-        public final static DutyCycleOut INDEXER_SHOOT_DUTY_CYCLE = new DutyCycleOut(-0.5); 
-        public final static DutyCycleOut INACTIVE_DUTY_CYCLE = new DutyCycleOut(0); 
+        public final static MotionMagicVelocityDutyCycle ACTIVE_SHOOT_DUTY_CYCLE = 
+            new MotionMagicVelocityDutyCycle(0.7); 
+        public final static MotionMagicVelocityDutyCycle INDEXER_INTAKE_DUTY_CYCLE = new 
+            MotionMagicVelocityDutyCycle(0.7); 
+        public final static MotionMagicVelocityDutyCycle INDEXER_SHOOT_DUTY_CYCLE = new 
+            MotionMagicVelocityDutyCycle(-0.7); 
+        public final static MotionMagicVelocityDutyCycle INACTIVE_DUTY_CYCLE = new 
+            MotionMagicVelocityDutyCycle(0); 
     }
 }

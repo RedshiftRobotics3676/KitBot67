@@ -20,7 +20,6 @@ public class Shooter extends SubsystemBase {
     indexerMotor = new TalonFX(CANConstants.INDEXER_MOTOR_ID);
   }
   
-  
   /**
    * When called, set the shooter to run continuously at a fixed speed until it is no longer being called, stopping the motors
    */
@@ -39,11 +38,9 @@ public class Shooter extends SubsystemBase {
   public Command intake() {
     return runEnd(
       () -> { 
-        shooterMotor.setControl(ShooterConstants.ACTIVE_SHOOT_DUTY_CYCLE);
         indexerMotor.setControl(ShooterConstants.INDEXER_INTAKE_DUTY_CYCLE);
       }, 
       () -> {
-        shooterMotor.setControl(ShooterConstants.INACTIVE_DUTY_CYCLE);
         indexerMotor.setControl(ShooterConstants.INACTIVE_DUTY_CYCLE);
       });    
   }

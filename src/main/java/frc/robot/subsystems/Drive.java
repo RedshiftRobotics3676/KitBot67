@@ -6,36 +6,41 @@ package frc.robot.subsystems;
 
 import frc.robot.Constants.CANConstants;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.InvertedValue;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drive extends SubsystemBase {
-  private final WPI_TalonSRX frontLeftMotor;
-  private final WPI_TalonSRX backLeftMotor;
-  private final WPI_TalonSRX frontRightMotor;
-  private final WPI_TalonSRX backRightMotor;
+  private final TalonFX frontLeftMotor;
+  private final TalonFX backLeftMotor;
+  private final TalonFX frontRightMotor;
+  private final TalonFX backRightMotor;
   private final DifferentialDrive differentialDriveController;
 
   public Drive() {
     // Create motors with appropriate CAN IDs
-    frontLeftMotor = new WPI_TalonSRX(CANConstants.FRONT_LEFT_MOTOR_ID);
-    backLeftMotor = new WPI_TalonSRX(CANConstants.BACK_LEFT_MOTOR_ID);
-    frontRightMotor = new WPI_TalonSRX(CANConstants.FRONT_RIGHT_MOTOR_ID);
-    backRightMotor = new WPI_TalonSRX(CANConstants.BACK_RIGHT_MOTOR_ID);
+    frontLeftMotor = new TalonFX(CANConstants.FRONT_LEFT_MOTOR_ID);
+    backLeftMotor = new TalonFX(CANConstants.BACK_LEFT_MOTOR_ID);
+    frontRightMotor = new TalonFX(CANConstants.FRONT_RIGHT_MOTOR_ID);
+    backRightMotor = new TalonFX(CANConstants.BACK_RIGHT_MOTOR_ID);
     
     // Configure motor reversals
-    frontLeftMotor.setInverted(false);
-    backLeftMotor.setInverted(false);
-    frontRightMotor.setInverted(true);
-    backRightMotor.setInverted(true);
+    TalonFXConfiguration InvertConfig = new TalonFXConfiguration();
+    TalonFXConfiguration NormalConfig = new TalonFXConfiguration();
+    InvertConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    NormalConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    frontLeftMotor.getConfigurator().apply(NormalConfig);
+    frontRightMotor.getConfigurator().apply(InvertConfig);
     
     // Make back motors follow the front motors
-    backLeftMotor.follow(frontLeftMotor);
-    backRightMotor.follow(frontRightMotor);
+    backLeftMotor.setControl(new Follower(CANConstants.FRONT_LEFT_MOTOR_ID, null));
+    backRightMotor.setControl(new Follower(CANConstants.FRONT_RIGHT_MOTOR_ID, null));
 
-    differentialDriveController = new DifferentialDrive(frontLeftMotor, frontRightMotor);
+    differentialDriveController = new DifferentialDrive(frontLeftMotor::set, frontRightMotor::set);
     differentialDriveController.setDeadband(0.1);
   }
   
