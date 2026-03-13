@@ -10,6 +10,7 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -37,8 +38,8 @@ public class Drive extends SubsystemBase {
     frontRightMotor.getConfigurator().apply(InvertConfig);
     
     // Make back motors follow the front motors
-    backLeftMotor.setControl(new Follower(CANConstants.FRONT_LEFT_MOTOR_ID, null));
-    backRightMotor.setControl(new Follower(CANConstants.FRONT_RIGHT_MOTOR_ID, null));
+    backLeftMotor.setControl(new Follower(CANConstants.FRONT_LEFT_MOTOR_ID, MotorAlignmentValue.Aligned));
+    backRightMotor.setControl(new Follower(CANConstants.FRONT_RIGHT_MOTOR_ID, MotorAlignmentValue.Aligned));
 
     differentialDriveController = new DifferentialDrive(frontLeftMotor::set, frontRightMotor::set);
     differentialDriveController.setDeadband(0.1);
