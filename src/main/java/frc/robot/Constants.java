@@ -5,7 +5,7 @@ import com.ctre.phoenix6.controls.MotionMagicVelocityDutyCycle;
 public class Constants {
     public class CANConstants {
         public final static int FRONT_LEFT_MOTOR_ID = 0; 
-        public fina659l static int BACK_LEFT_MOTOR_ID = 1; 
+        public final static int BACK_LEFT_MOTOR_ID = 1; 
         public final static int FRONT_RIGHT_MOTOR_ID = 2; 
         public final static int BACK_RIGHT_MOTOR_ID = 3; 
         public final static int SHOOTER_MOTOR_ID = 4; 
