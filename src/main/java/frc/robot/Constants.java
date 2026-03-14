@@ -14,11 +14,11 @@ public class Constants {
     
     public class ShooterConstants {
         public final static MotionMagicVelocityDutyCycle ACTIVE_SHOOT_DUTY_CYCLE = 
-            new MotionMagicVelocityDutyCycle(0.7); 
+            new MotionMagicVelocityDutyCycle(5); 
         public final static MotionMagicVelocityDutyCycle INDEXER_INTAKE_DUTY_CYCLE = new 
-            MotionMagicVelocityDutyCycle(0.7); 
+            MotionMagicVelocityDutyCycle(5); 
         public final static MotionMagicVelocityDutyCycle INDEXER_SHOOT_DUTY_CYCLE = new 
-            MotionMagicVelocityDutyCycle(-0.7); 
+            MotionMagicVelocityDutyCycle(-5); 
         public final static MotionMagicVelocityDutyCycle INACTIVE_DUTY_CYCLE = new 
             MotionMagicVelocityDutyCycle(0); 
     }
