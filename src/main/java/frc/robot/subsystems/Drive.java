@@ -12,6 +12,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -21,6 +22,7 @@ public class Drive extends SubsystemBase {
   private final TalonFX frontRightMotor;
   private final TalonFX backRightMotor;
   private final DifferentialDrive differentialDriveController;
+  // private final DifferentialDriveOdometry differentialDriveOdometry;
 
   public Drive() {
     // Create motors with appropriate CAN IDs

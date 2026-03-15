@@ -16,9 +16,9 @@ public final class Constants {
     }
 
     public static final class ShooterConstants {
-        public static final double SHOOTER_FEED_TARGET_VELOCITY = 5; 
-        public static final double INDEXER_INTAKE_TARGET_VELOCITY = 5; 
-        public static final double INDEXER_SHOOT_TARGET_VELOCITY = -5; 
+        public static final double SHOOTER_FEED_TARGET_VELOCITY = 80; 
+        public static final double INDEXER_INTAKE_TARGET_VELOCITY = 50; 
+        public static final double INDEXER_SHOOT_TARGET_VELOCITY = -50; 
 
         public static final MotionMagicVelocityDutyCycle SHOOTER_FEED_DUTY_CYCLE =
                 new MotionMagicVelocityDutyCycle(SHOOTER_FEED_TARGET_VELOCITY);
@@ -32,8 +32,8 @@ public final class Constants {
         public static TalonFXConfiguration createShooterConfig() {
             TalonFXConfiguration config = new TalonFXConfiguration();
 
-            config.Voltage.PeakForwardVoltage = 11.5;
-            config.Voltage.PeakReverseVoltage = -11.5;
+            config.Voltage.PeakForwardVoltage = 12;
+            config.Voltage.PeakReverseVoltage = -12;
 
             config.Slot0.kP = 0.7;
             config.Slot0.kI = 0.0;
@@ -50,17 +50,17 @@ public final class Constants {
         public static TalonFXConfiguration createIndexerConfig() {
             TalonFXConfiguration config = new TalonFXConfiguration();
 
-            config.Voltage.PeakForwardVoltage = 11.5;
-            config.Voltage.PeakReverseVoltage = -11.5;
+            config.Voltage.PeakForwardVoltage = 12;
+            config.Voltage.PeakReverseVoltage = -12;
 
-            config.Slot0.kP = 0.0475;
+            config.Slot0.kP = 0.05;
             config.Slot0.kI = 0.0;
             config.Slot0.kD = 0.0;
-            config.Slot0.kV = 0.009;
-            config.Slot0.kS = 0.015;
+            config.Slot0.kS = 0.017;
+            config.Slot0.kV = 0.0095;
 
-            config.MotionMagic.MotionMagicCruiseVelocity = 20;
-            config.MotionMagic.MotionMagicAcceleration = 100;
+            config.MotionMagic.MotionMagicCruiseVelocity = 10;
+            config.MotionMagic.MotionMagicAcceleration = 150;
 
             return config;
         }
@@ -70,19 +70,17 @@ public final class Constants {
         public static TalonFXConfiguration createLeftDriveConfig() {
             TalonFXConfiguration config = new TalonFXConfiguration();
 
-            config.Voltage.PeakForwardVoltage = 11.5;
-            config.Voltage.PeakReverseVoltage = -11.5;
+            config.Voltage.PeakForwardVoltage = 12;
+            config.Voltage.PeakReverseVoltage = -12;
 
-            // NOT TUNED YET PLEASE TUNE
-            config.Slot0.kP = 0.7;
+            config.Slot0.kP = 0.05;
             config.Slot0.kI = 0.0;
             config.Slot0.kD = 0.0;
-            config.Slot0.kV = 0.2; // ~1 / max velocity (rps)
-            config.Slot0.kS = 0.115; // static friction compensation
+            config.Slot0.kS = 0.017;
+            config.Slot0.kV = 0.0095;
 
-            // NOT TUNED YET PLEASE TUNE
-            config.MotionMagic.MotionMagicCruiseVelocity = 10;
-            config.MotionMagic.MotionMagicAcceleration = 150;
+            config.MotionMagic.MotionMagicCruiseVelocity = 20;
+            config.MotionMagic.MotionMagicAcceleration = 100;
 
             return config;
         }
@@ -90,17 +88,15 @@ public final class Constants {
         public static TalonFXConfiguration createRightDriveConfig() {
             TalonFXConfiguration config = new TalonFXConfiguration();
 
-            config.Voltage.PeakForwardVoltage = 11.5;
-            config.Voltage.PeakReverseVoltage = -11.5;
+            config.Voltage.PeakForwardVoltage = 12;
+            config.Voltage.PeakReverseVoltage = -12;
 
-            // NOT TUNED YET PLEASE TUNE
-            config.Slot0.kP = 0.0;
+            config.Slot0.kP = 0.05;
             config.Slot0.kI = 0.0;
             config.Slot0.kD = 0.0;
-            config.Slot0.kV = 0.11;
-            config.Slot0.kS = 0.01;
+            config.Slot0.kS = 0.017;
+            config.Slot0.kV = 0.0095;
 
-            // NOT TUNED YET PLEASE TUNE
             config.MotionMagic.MotionMagicCruiseVelocity = 20;
             config.MotionMagic.MotionMagicAcceleration = 100;
 

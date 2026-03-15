@@ -33,7 +33,7 @@ public class Shooter extends SubsystemBase {
         // Start flywheel
         shooterMotor.setControl(ShooterConstants.SHOOTER_FEED_DUTY_CYCLE);
   
-        if (shooterMotor.getVelocity().getValueAsDouble() >= ShooterConstants.SHOOTER_FEED_TARGET_VELOCITY) {
+        if (shooterMotor.getVelocity().getValueAsDouble() >= ShooterConstants.SHOOTER_FEED_TARGET_VELOCITY * 0.8) {
           indexerMotor.setControl(ShooterConstants.INDEXER_SHOOT_DUTY_CYCLE);
         } 
         else {
