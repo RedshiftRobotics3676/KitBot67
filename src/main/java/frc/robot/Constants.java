@@ -35,11 +35,11 @@ public final class Constants {
             config.Voltage.PeakForwardVoltage = 11.5;
             config.Voltage.PeakReverseVoltage = -11.5;
 
-            config.Slot0.kP = 0.0;
+            config.Slot0.kP = 0.7;
             config.Slot0.kI = 0.0;
             config.Slot0.kD = 0.0;
-            config.Slot0.kV = 0.11; // ~1 / max velocity (rps)
-            config.Slot0.kS = 0.01; // static friction compensation
+            config.Slot0.kV = 0.2; // ~1 / max velocity (rps)
+            config.Slot0.kS = 0.115; // static friction compensation
 
             config.MotionMagic.MotionMagicCruiseVelocity = 10;
             config.MotionMagic.MotionMagicAcceleration = 150;
@@ -53,16 +53,62 @@ public final class Constants {
             config.Voltage.PeakForwardVoltage = 11.5;
             config.Voltage.PeakReverseVoltage = -11.5;
 
-            config.Slot0.kP = 0.0;
+            config.Slot0.kP = 0.0475;
             config.Slot0.kI = 0.0;
             config.Slot0.kD = 0.0;
-            config.Slot0.kV = 0.11;
-            config.Slot0.kS = 0.01;
+            config.Slot0.kV = 0.009;
+            config.Slot0.kS = 0.015;
 
             config.MotionMagic.MotionMagicCruiseVelocity = 20;
             config.MotionMagic.MotionMagicAcceleration = 100;
 
             return config;
         }
+    }
+
+    public static final class DriveConstants{
+        public static TalonFXConfiguration createLeftDriveConfig() {
+            TalonFXConfiguration config = new TalonFXConfiguration();
+
+            config.Voltage.PeakForwardVoltage = 11.5;
+            config.Voltage.PeakReverseVoltage = -11.5;
+
+            // NOT TUNED YET PLEASE TUNE
+            config.Slot0.kP = 0.7;
+            config.Slot0.kI = 0.0;
+            config.Slot0.kD = 0.0;
+            config.Slot0.kV = 0.2; // ~1 / max velocity (rps)
+            config.Slot0.kS = 0.115; // static friction compensation
+
+            // NOT TUNED YET PLEASE TUNE
+            config.MotionMagic.MotionMagicCruiseVelocity = 10;
+            config.MotionMagic.MotionMagicAcceleration = 150;
+
+            return config;
+        }
+
+        public static TalonFXConfiguration createRightDriveConfig() {
+            TalonFXConfiguration config = new TalonFXConfiguration();
+
+            config.Voltage.PeakForwardVoltage = 11.5;
+            config.Voltage.PeakReverseVoltage = -11.5;
+
+            // NOT TUNED YET PLEASE TUNE
+            config.Slot0.kP = 0.0;
+            config.Slot0.kI = 0.0;
+            config.Slot0.kD = 0.0;
+            config.Slot0.kV = 0.11;
+            config.Slot0.kS = 0.01;
+
+            // NOT TUNED YET PLEASE TUNE
+            config.MotionMagic.MotionMagicCruiseVelocity = 20;
+            config.MotionMagic.MotionMagicAcceleration = 100;
+
+            return config;
+        }
+    }
+
+    public static final class VisionConstants{
+        public static final String CAMERA_ONE_NAME = "SHOOTER_CAMERA";
     }
 }
