@@ -5,12 +5,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Vision;
+import frc.robot.Constants.VisionConstants;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class Autoaim extends Command {
+
+  private final Drive m_driveTrain;
+  private final Vision m_vision;
+
   /** Creates a new Autoaim. */
-  public Autoaim() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public Autoaim(Drive driveTrain, Vision visions){
+    this.m_driveTrain = driveTrain;
+    this.m_vision = visions;
+    addRequirements(m_driveTrain, m_vision);
   }
 
   // Called when the command is initially scheduled.
@@ -19,7 +28,24 @@ public class Autoaim extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    //HARD CODED ID, NEED TO IMPLEMENT DIFFERING FUNCTIONALITY
+    int idToFind = 9;
+    
+    if (m_vision.hasTarget(idToFind)) {
+        double yaw = m_vision.getTargetYaw(idToFind);
+        
+        double rotationSpeed = yaw * VisionConstants.VISION_TURN_KP; 
+        if(Math.abs(yaw) > 0.3)
+          m_driveTrain.tankMovementInput(rotationSpeed, -rotationSpeed);
+        else
+          m_driveTrain.tankMovementInput(0,0);
+    }
+    else{
+      m_driveTrain.tankMovementInput(0,0 );
+    }
+  }
+
 
   // Called once the command ends or is interrupted.
   @Override
@@ -30,4 +56,5 @@ public class Autoaim extends Command {
   public boolean isFinished() {
     return false;
   }
+
 }

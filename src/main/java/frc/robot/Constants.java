@@ -106,5 +106,6 @@ public final class Constants {
 
     public static final class VisionConstants{
         public static final String CAMERA_ONE_NAME = "SHOOTER_CAMERA";
+        public static final double VISION_TURN_KP = 0.1;
     }
 }

@@ -5,9 +5,6 @@
 package frc.robot.subsystems;
 
 import org.photonvision.PhotonCamera;
-
-import com.ctre.phoenix6.hardware.TalonFX;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.VisionConstants;
 
@@ -19,8 +16,29 @@ public class Vision extends SubsystemBase {
     CameraOne = new PhotonCamera(VisionConstants.CAMERA_ONE_NAME);
   }
 
+  public double getTargetYaw(int targetID) {
+    var result = CameraOne.getLatestResult();
+    if (result.hasTargets()) {
+        for (var target : result.getTargets()) {
+            if (target.getFiducialId() == targetID) {
+                return target.getYaw();
+            }
+        }
+    }
+    return 0; // Return 0 if target not found (or a special value like -999)
+  }
+
+  public boolean hasTarget(int targetID) {
+    var result = CameraOne.getLatestResult();
+    if (result.hasTargets()) {
+        for (var target : result.getTargets()) {
+            if (target.getFiducialId() == targetID) return true;
+        }
+    }
+    return false;
+  }
+
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
   }
 }
